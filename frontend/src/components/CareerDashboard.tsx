@@ -49,13 +49,13 @@ const Dashboard: React.FC = () => {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
         const userRes = await axios.get(
-          "http://localhost:5000/api/auth/me",
+          "https://careerai-885x.onrender.com/api/auth/me",
           config
         );
         const username = userRes.data.user.name;
         setUser?.(userRes.data.user);
         const skillsRes = await axios.get(
-          "http://localhost:5000/api/skills",
+          "https://careerai-885x.onrender.com/api/skills",
           config
         );
         const { currentSkills, skillsToDevelop } = skillsRes.data;
@@ -67,14 +67,14 @@ const Dashboard: React.FC = () => {
         );
         setToDevelop(filteredToDevelop);
         const careerRes = await axios.get(
-          "http://localhost:5000/api/career-suggestion",
+          "https://careerai-885x.onrender.com/api/career-suggestion",
           config
         );
         setCareers(careerRes.data.careersRes || []);
         if (filteredToDevelop.length > 0) {
           try {
             const courseRes = await axios.post(
-              "http://localhost:5000/api/ai-skill-courses",
+              "https://careerai-885x.onrender.com/api/ai-skill-courses",
               { username, skills: filteredToDevelop },
               config
             );
@@ -413,5 +413,6 @@ const Dashboard: React.FC = () => {
     </div>
   );
 };
+
 
 export default Dashboard;
