@@ -221,7 +221,7 @@ const PracticePlayground: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/aiquery", {
+      const response = await fetch("https://careerai-885x.onrender.com/api/aiquery", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: aiInput }),
@@ -254,7 +254,7 @@ const PracticePlayground: React.FC = () => {
     }
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/run-code", {
+      const res = await fetch("https://careerai-885x.onrender.com/api/run-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code, language }),
@@ -614,3 +614,4 @@ const PracticePlayground: React.FC = () => {
 };
 
 export default PracticePlayground;
+
