@@ -71,7 +71,7 @@ const Hub: React.FC = () => {
       if (!skill) return;
       try {
         setLoading(true);
-        const res = await axios.post("http://localhost:5000/api/learning/generate-skill-path", { skill });
+        const res = await axios.post("https://careerai-885x.onrender.com/api/learning/generate-skill-path", { skill });
         setSkillPath(res.data.path);
       } catch (err) {
         console.error("Error fetching skill path", err);
@@ -797,5 +797,6 @@ const Hub: React.FC = () => {
     </div>
   );
 };
+
 
 export default Hub;
