@@ -131,7 +131,7 @@ const CareerQuiz: React.FC = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/quiz", {
+      const res = await fetch("https://careerai-885x.onrender.com/api/quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(normalizedData),
@@ -337,5 +337,6 @@ const CareerQuiz: React.FC = () => {
     </div>
   );
 };
+
 
 export default CareerQuiz;
