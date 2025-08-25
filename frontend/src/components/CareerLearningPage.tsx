@@ -37,11 +37,11 @@ const CareerLearningPage: React.FC = () => {
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
         const userRes = await axios.get(
-          "http://localhost:5000/api/auth/me",
+          "https://careerai-885x.onrender.com/api/auth/me",
           config
         );
         const res = await fetch(
-          `http://localhost:5000/api/learning-path/${encodeURIComponent(
+          `https://careerai-885x.onrender.com/api/learning-path/${encodeURIComponent(
             careerTitle!
           )}`
         );
@@ -65,7 +65,7 @@ const CareerLearningPage: React.FC = () => {
 
       try {
         const res = await fetch(
-          `http://localhost:5000/api/progress/${user.name}/${careerTitle}`
+          `https://careerai-885x.onrender.com/api/progress/${user.name}/${careerTitle}`
         );
         const saved = await res.json();
         const match = saved.find(
@@ -85,7 +85,7 @@ const CareerLearningPage: React.FC = () => {
 
     setSaving(true);
     try {
-      await fetch("http://localhost:5000/api/save-progress", {
+      await fetch("https://careerai-885x.onrender.com/api/save-progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -328,3 +328,4 @@ const CareerLearningPage: React.FC = () => {
 };
 
 export default CareerLearningPage;
+
