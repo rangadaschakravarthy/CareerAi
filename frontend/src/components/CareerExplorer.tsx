@@ -29,7 +29,7 @@ const CareerExplorer: React.FC = () => {
   useEffect(() => {
     const fetchCareers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/careers");
+        const res = await fetch("https://careerai-885x.onrender.com/api/careers");
         const data = await res.json();
         setCareers(data);
       } catch (error) {
@@ -125,3 +125,4 @@ const CareerExplorer: React.FC = () => {
 };
 
 export default CareerExplorer;
+
