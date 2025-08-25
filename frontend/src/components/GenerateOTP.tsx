@@ -18,7 +18,7 @@ const GenerateOTP: React.FC = () => {
     const OTP = Math.floor(100000 + Math.random() * 900000).toString();
 
     try {
-      await axios.post('http://localhost:5000/send_recovery_email', {
+      await axios.post('https://careerai-885x.onrender.com/send_recovery_email', {
         recipient_email: email,
         OTP,
       });
@@ -66,3 +66,4 @@ const GenerateOTP: React.FC = () => {
 };
 
 export default GenerateOTP;
+
