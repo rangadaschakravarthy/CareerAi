@@ -26,7 +26,7 @@ const ResetPassword: React.FC = () => {
     }
 
     try {
-      await axios.put('http://localhost:5000/api/reset-password', {
+      await axios.put('https://careerai-885x.onrender.com/api/reset-password', {
         email,
         newPassword,
       });
@@ -143,5 +143,6 @@ const ResetPassword: React.FC = () => {
     </div>
   );
 };
+
 
 export default ResetPassword;
