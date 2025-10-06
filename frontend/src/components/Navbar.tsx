@@ -8,6 +8,7 @@ const Navbar: React.FC = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  console.log(user);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -207,3 +208,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
