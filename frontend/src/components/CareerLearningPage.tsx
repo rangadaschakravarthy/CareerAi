@@ -26,9 +26,8 @@ const CareerLearningPage: React.FC = () => {
   const { user } = useAuth();
   const [modules, setModules] = useState<LearningModule[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [notes, setNotes] = useState("");
+  const [notes,setNotes] = useState("");
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     const fetchModules = async () => {
@@ -37,21 +36,23 @@ const CareerLearningPage: React.FC = () => {
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
         const userRes = await axios.get(
-          "https://careerai-885x.onrender.com/api/auth/me",
+          "http://localhost:5000/api/auth/me",
           config
         );
         const res = await fetch(
-          `https://careerai-885x.onrender.com/api/learning-path/${encodeURIComponent(
+          `http://localhost:5000/api/learning-path/${encodeURIComponent(
             careerTitle!
           )}`
         );
         const data = await res.json();
         setModules(data);
+        console.log("User Data:", userRes.data);
       } catch (err) {
         console.error("Error loading modules:", err);
       } finally {
         setLoading(false);
       }
+      console.log(notes)
     };
 
     if (careerTitle) {
@@ -65,7 +66,7 @@ const CareerLearningPage: React.FC = () => {
 
       try {
         const res = await fetch(
-          `https://careerai-885x.onrender.com/api/progress/${user.name}/${careerTitle}`
+          `http://localhost:5000/api/progress/${user.name}/${careerTitle}`
         );
         const saved = await res.json();
         const match = saved.find(
@@ -79,28 +80,6 @@ const CareerLearningPage: React.FC = () => {
 
     fetchNotes();
   }, [careerTitle, modules, currentIndex, user?.name]);
-
-  const saveProgress = async () => {
-    if (!user?.name || !careerTitle || !modules[currentIndex]) return;
-
-    setSaving(true);
-    try {
-      await fetch("https://careerai-885x.onrender.com/api/save-progress", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: user.name,
-          career: careerTitle,
-          module: modules[currentIndex].title,
-          notes,
-        }),
-      });
-    } catch (err) {
-      console.error("Error saving progress:", err);
-    } finally {
-      setSaving(false);
-    }
-  };
 
   const handleNext = () => {
     setCurrentIndex((prev) => prev + 1);
@@ -328,4 +307,3 @@ const CareerLearningPage: React.FC = () => {
 };
 
 export default CareerLearningPage;
-
