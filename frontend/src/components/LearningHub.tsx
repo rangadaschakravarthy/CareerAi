@@ -32,17 +32,17 @@ const LearningHub = () => {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
-        // Fetch user
+        
         const userRes = await axios.get(
-          "https://careerai-885x.onrender.com/api/auth/me",
+          "http://localhost:5000/api/auth/me",
           config
         );
         const username = userRes.data.user.name;
         setUser?.(userRes.data.user);
 
-        // Fetch skills
+        
         const skillsRes = await axios.get(
-          "https://careerai-885x.onrender.com/api/skills",
+          "http://localhost:5000/api/skills",
           config
         );
         const { currentSkills } = skillsRes.data;
@@ -50,7 +50,7 @@ const LearningHub = () => {
 
         // Fetch career suggestion
         const careerRes = await axios.get(
-          "https://careerai-885x.onrender.com/api/career-suggestion",
+          "http://localhost:5000/api/career-suggestion",
           config
         );
         const careersData = careerRes.data.careersRes || [];
@@ -69,13 +69,15 @@ const LearningHub = () => {
           // Fetch recommended courses for missing skills
           if (filtered.length > 0) {
             const courseRes = await axios.post(
-              "https://careerai-885x.onrender.com/api/ai-skill-courses",
+              "http://localhost:5000/api/ai-skill-courses",
               { username, skills: filtered },
               config
             );
             setCourses(courseRes.data.skillCourses || []);
           }
         }
+        console.log(skills);
+        console.log(recommendedSkills)
       } catch (error) {
         console.error("Dashboard error:", error);
       } finally {
@@ -172,4 +174,3 @@ const LearningHub = () => {
 };
 
 export default LearningHub;
-
