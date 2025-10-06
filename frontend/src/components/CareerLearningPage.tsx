@@ -36,11 +36,11 @@ const CareerLearningPage: React.FC = () => {
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
         const userRes = await axios.get(
-          "http://localhost:5000/api/auth/me",
+          "https://careerai-885x.onrender.com/api/auth/me",
           config
         );
         const res = await fetch(
-          `http://localhost:5000/api/learning-path/${encodeURIComponent(
+          `https://careerai-885x.onrender.com/api/learning-path/${encodeURIComponent(
             careerTitle!
           )}`
         );
@@ -307,3 +307,4 @@ const CareerLearningPage: React.FC = () => {
 };
 
 export default CareerLearningPage;
+
