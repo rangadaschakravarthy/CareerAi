@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -25,7 +25,7 @@ export default function AdminDashboard() {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get(`https://careerai-885x.onrender.com/admin/${activeModel}`);
+      const res = await axios.get(`http://localhost:5000/admin/${activeModel}`);
       setItems(res.data);
     } catch (err) {
       console.error("Error fetching items:", err);
@@ -38,7 +38,7 @@ export default function AdminDashboard() {
 
   const addItem = async () => {
     try {
-      await axios.post(`https://careerai-885x.onrender.com/admin/${activeModel}`, newItem);
+      await axios.post(`http://localhost:5000/admin/${activeModel}`, newItem);
       setNewItem({});
       fetchItems();
     } catch (err) {
@@ -49,7 +49,7 @@ export default function AdminDashboard() {
   const updateItem = async (id: string, updated: any) => {
     try {
       await axios.put(
-        `https://careerai-885x.onrender.com/admin/${activeModel}/${id}`,
+        `http://localhost:5000/admin/${activeModel}/${id}`,
         updated
       );
       fetchItems();
@@ -60,7 +60,7 @@ export default function AdminDashboard() {
 
   const deleteItem = async (id: string) => {
     try {
-      await axios.delete(`https://careerai-885x.onrender.com/admin/${activeModel}/${id}`);
+      await axios.delete(`http://localhost:5000/admin/${activeModel}/${id}`);
       fetchItems();
     } catch (err) {
       console.error("Error deleting item:", err);
@@ -136,4 +136,3 @@ export default function AdminDashboard() {
     </div>
   );
 }
-
