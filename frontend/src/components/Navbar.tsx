@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, User, LogOut } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 
 const Navbar: React.FC = () => {
@@ -8,7 +8,6 @@ const Navbar: React.FC = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(user);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -208,4 +207,5 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
 
