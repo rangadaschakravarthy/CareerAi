@@ -34,7 +34,7 @@ const LearningHub = () => {
 
         
         const userRes = await axios.get(
-          "http://localhost:5000/api/auth/me",
+          "https://careerai-885x.onrender.com/api/auth/me",
           config
         );
         const username = userRes.data.user.name;
@@ -42,7 +42,7 @@ const LearningHub = () => {
 
         
         const skillsRes = await axios.get(
-          "http://localhost:5000/api/skills",
+          "https://careerai-885x.onrender.com/api/skills",
           config
         );
         const { currentSkills } = skillsRes.data;
@@ -50,7 +50,7 @@ const LearningHub = () => {
 
         // Fetch career suggestion
         const careerRes = await axios.get(
-          "http://localhost:5000/api/career-suggestion",
+          "https://careerai-885x.onrender.com/api/career-suggestion",
           config
         );
         const careersData = careerRes.data.careersRes || [];
@@ -69,7 +69,7 @@ const LearningHub = () => {
           // Fetch recommended courses for missing skills
           if (filtered.length > 0) {
             const courseRes = await axios.post(
-              "http://localhost:5000/api/ai-skill-courses",
+              "https://careerai-885x.onrender.com/api/ai-skill-courses",
               { username, skills: filtered },
               config
             );
@@ -174,3 +174,4 @@ const LearningHub = () => {
 };
 
 export default LearningHub;
+
