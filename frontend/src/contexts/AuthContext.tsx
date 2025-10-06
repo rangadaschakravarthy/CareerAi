@@ -16,6 +16,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
@@ -59,7 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     // Fetch normal user
     axios
-      .get("https://careerai-885x.onrender.com/api/auth/me", {
+      .get("http://localhost:5000/api/auth/me", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -87,7 +88,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       // Normal user
-      const res = await axios.post("https://careerai-885x.onrender.com/api/login", {
+      const res = await axios.post("http://localhost:5000/api/login", {
         email,
         password,
       });
@@ -106,7 +107,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const loginWithGoogle = async (token: string) => {
     setIsLoading(true);
     try {
-      const res = await axios.post("https://careerai-885x.onrender.com/api/auth/google", {
+      const res = await axios.post("http://localhost:5000/api/auth/google", {
         token,
       });
       localStorage.setItem("token", res.data.token);
@@ -124,7 +125,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const register = async (name: string, email: string, password: string) => {
     setIsLoading(true);
     try {
-      const res = await axios.post("https://careerai-885x.onrender.com/api/register", {
+      const res = await axios.post("http://localhost:5000/api/register", {
         name,
         email,
         password,
@@ -152,6 +153,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider
       value={{
         user,
+        setUser,
         isAuthenticated,
         isLoading,
         error,
@@ -165,4 +167,3 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     </AuthContext.Provider>
   );
 };
-
