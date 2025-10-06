@@ -10,7 +10,6 @@ const OtpVerification: React.FC = () => {
   const navigate = useNavigate();
 
   const storedOtp = localStorage.getItem('otp');
-  const email = localStorage.getItem('reset_email');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,5 +119,6 @@ const OtpVerification: React.FC = () => {
     </div>
   );
 };
+
 
 export default OtpVerification;
